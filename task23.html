@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameZone | Gaming Portal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0e17;
+    color: #f4f5ff;
+}
+
+header {
+    background: #121726;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 1px solid #282e43;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #a855f7;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: #dddff0;
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #22d3ee;
+}
+
+.hero {
+    padding: 75px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #21103f, #101a35, #102f42);
+}
+
+.hero h1 {
+    font-size: clamp(35px, 6vw, 58px);
+    margin-bottom: 15px;
+    animation: slideIn 1s ease;
+}
+
+.hero h1 span {
+    color: #22d3ee;
+}
+
+.hero p {
+    color: #c1c7dc;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #a855f7;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #22d3ee;
+    color: #10131f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px #22d3ee35;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 22px;
+}
+
+.heading {
+    font-size: 29px;
+    margin-bottom: 25px;
+}
+
+.heading span {
+    color: #22d3ee;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #151b2c;
+    border: 1px solid #29334b;
+    border-radius: 12px;
+    padding: 22px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #a855f7;
+    box-shadow: 0 10px 25px #0005;
+}
+
+.game-icon {
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    background: linear-gradient(135deg, #24204a, #12354b);
+    border-radius: 9px;
+    margin-bottom: 17px;
+}
+
+.card h3 {
+    color: #c084fc;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #b7bfd3;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.tag {
+    display: inline-block;
+    background: #292342;
+    color: #d8b4fe;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid #29334b;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background: #151b2c;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #29334b;
+}
+
+th {
+    background: #24203f;
+    color: #22d3ee;
+}
+
+tr:hover td {
+    background: #20273b;
+}
+
+.rank {
+    color: #facc15;
+    font-weight: bold;
+}
+
+.tournament-status {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.search {
+    width: min(100%, 400px);
+    padding: 12px;
+    border-radius: 7px;
+    border: 1px solid #39435b;
+    background: #151b2c;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.news-date {
+    color: #22d3ee !important;
+    margin-bottom: 10px;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    background: #121726;
+    color: #9ba5bb;
+    line-height: 1.8;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 650px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .container {
+        padding: 32px 15px;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🎮 GameZone</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#games">Games</a>
+        <a href="#tournaments">Tournaments</a>
+        <a href="#teams">Teams</a>
+        <a href="#players">Players</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#news">News</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Enter the <span>Gaming Arena</span></h1>
+    <p>Explore games, follow esports tournaments and discover top players.</p>
+    <a href="#games" class="btn">Explore Games</a>
+</section>
+
+<main>
+
+<section class="container" id="games">
+    <h2 class="heading">Popular <span>Games</span></h2>
+
+    <div class="grid">
+        <article class="card">
+            <div class="game-icon">🔫</div>
+            <h3>Valorant</h3>
+            <span class="tag">FPS</span>
+            <p>A tactical team shooter focused on strategy, precision and teamwork.</p>
+            <p><strong>Mode:</strong> 5 vs 5</p>
+            <p><strong>Platform:</strong> PC</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">🪂</div>
+            <h3>BGMI</h3>
+            <span class="tag">Battle Royale</span>
+            <p>A survival shooter where teams compete to become the last squad standing.</p>
+            <p><strong>Mode:</strong> Squad</p>
+            <p><strong>Platform:</strong> Mobile</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">⚔️</div>
+            <h3>League of Legends</h3>
+            <span class="tag">MOBA</span>
+            <p>A competitive strategy game featuring champions, team fights and objectives.</p>
+            <p><strong>Mode:</strong> 5 vs 5</p>
+            <p><strong>Platform:</strong> PC</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">🚗</div>
+            <h3>Rocket League</h3>
+            <span class="tag">Sports</span>
+            <p>Fast-paced football gameplay using rocket-powered vehicles.</p>
+            <p><strong>Mode:</strong> 3 vs 3</p>
+            <p><strong>Platform:</strong> PC and consoles</p>
+        </article>
+    </div>
+</section>
+
+<section class="container" id="tournaments">
+    <h2 class="heading">Esports <span>Tournaments</span></h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tournament</th>
+                    <th>Game</th>
+                    <th>Date</th>
+                    <th>Format</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Valorant Championship</td>
+                    <td>Valorant</td>
+                    <td>15 Nov 2026</td>
+                    <td>5 vs 5</td>
+                    <td class="tournament-status">Upcoming*</td>
+                </tr>
+                <tr>
+                    <td>Mobile Gaming Cup</td>
+                    <td>BGMI</td>
+                    <td>22 Nov 2026</td>
+                    <td>Squads</td>
+                    <td class="tournament-status">Upcoming*</td>
+                </tr>
+                <tr>
+                    <td>MOBA Masters</td>
+                    <td>League of Legends</td>
+                    <td>05 Dec 2026</td>
+                    <td>5 vs 5</td>
+                    <td class="tournament-status">Upcoming*</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="color:#9ba5bb;margin-top:12px">
+        *Sample dates for the academic project; not verified official events.
+    </p>
+</section>
+
+<section class="container" id="teams">
+    <h2 class="heading">Featured <span>Teams</span></h2>
+
+    <div class="grid">
+        <article class="card">
+            <div class="game-icon">🛡️</div>
+            <h3>Team Phoenix</h3>
+            <p><strong>Game:</strong> Valorant</p>
+            <p><strong>Captain:</strong> Alex</p>
+            <p><strong>Members:</strong> 5 players</p>
+            <p><strong>Style:</strong> Tactical teamwork</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">🔥</div>
+            <h3>Team Inferno</h3>
+            <p><strong>Game:</strong> BGMI</p>
+            <p><strong>Captain:</strong> Ryan</p>
+            <p><strong>Members:</strong> 4 players</p>
+            <p><strong>Style:</strong> Aggressive play</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">👑</div>
+            <h3>Team Titans</h3>
+            <p><strong>Game:</strong> League of Legends</p>
+            <p><strong>Captain:</strong> Daniel</p>
+            <p><strong>Members:</strong> 5 players</p>
+            <p><strong>Style:</strong> Strategic play</p>
+        </article>
+    </div>
+</section>
+
+<section class="container" id="players">
+    <h2 class="heading">Top <span>Players</span></h2>
+
+    <div class="grid">
+        <article class="card">
+            <h3>⚡ Shadow</h3>
+            <p><strong>Game:</strong> Valorant</p>
+            <p><strong>Role:</strong> Duelist</p>
+            <p><strong>Skill:</strong> Aim and precision</p>
+        </article>
+
+        <article class="card">
+            <h3>🎯 Blaze</h3>
+            <p><strong>Game:</strong> BGMI</p>
+            <p><strong>Role:</strong> Assaulter</p>
+            <p><strong>Skill:</strong> Combat strategy</p>
+        </article>
+
+        <article class="card">
+            <h3>🧠 Nova</h3>
+            <p><strong>Game:</strong> League of Legends</p>
+            <p><strong>Role:</strong> Mid Laner</p>
+            <p><strong>Skill:</strong> Game awareness</p>
+        </article>
+    </div>
+</section>
+
+<section class="container" id="leaderboard">
+    <h2 class="heading">Global <span>Leaderboard</span></h2>
+
+    <input type="text" class="search" id="playerSearch"
+        placeholder="Search player or game...">
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Game</th>
+                    <th>Points</th>
+                    <th>Wins</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+        </table>
+    </div>
+    <p style="color:#9ba5bb;margin-top:12px">
+        Sample leaderboard data for demonstration only.
+    </p>
+</section>
+
+<section class="container" id="news">
+    <h2 class="heading">Latest Gaming <span>News</span></h2>
+
+    <div class="grid">
+        <article class="card">
+            <div class="game-icon">🏆</div>
+            <h3>Championship Spotlight</h3>
+            <p class="news-date">Esports Update</p>
+            <p>Follow competitive gaming events, tournament results and team performances.</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">🎮</div>
+            <h3>Gaming Technology</h3>
+            <p class="news-date">Technology</p>
+            <p>Discover developments in gaming hardware, graphics and performance.</p>
+        </article>
+
+        <article class="card">
+            <div class="game-icon">👥</div>
+            <h3>Team Transfers</h3>
+            <p class="news-date">Team Updates</p>
+            <p>Explore player roster changes and team-building strategies.</p>
+        </article>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© <span id="year"></span> GameZone Gaming Portal</p>
+    <p>Designed using HTML, CSS and JavaScript.</p>
+</footer>
+
+<script>
+const players = [
+    { name: "Shadow", game: "Valorant", points: 9850, wins: 82 },
+    { name: "Blaze", game: "BGMI", points: 9420, wins: 76 },
+    { name: "Nova", game: "League of Legends", points: 9100, wins: 70 },
+    { name: "Phantom", game: "Valorant", points: 8750, wins: 65 },
+    { name: "Raptor", game: "BGMI", points: 8400, wins: 61 },
+    { name: "Ace", game: "Rocket League", points: 7990, wins: 58 }
+];
+
+const body = document.getElementById("leaderboardBody");
+const playerSearch = document.getElementById("playerSearch");
+
+function renderLeaderboard() {
+    const query = playerSearch.value.toLowerCase();
+
+    const filtered = players
+        .filter(player =>
+            player.name.toLowerCase().includes(query) ||
+            player.game.toLowerCase().includes(query)
+        )
+        .sort((a, b) => b.points - a.points);
+
+    body.innerHTML = filtered.map((player, index) => `
+        <tr>
+            <td class="rank">#${index + 1}</td>
+            <td>${player.name}</td>
+            <td>${player.game}</td>
+            <td>${player.points.toLocaleString()}</td>
+            <td>${player.wins}</td>
+        </tr>
+    `).join("");
+}
+
+playerSearch.addEventListener("input", renderLeaderboard);
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+renderLeaderboard();
+</script>
+
+</body>
+</html>
