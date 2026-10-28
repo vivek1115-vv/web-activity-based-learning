@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroHub | Electronics Catalog</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #202b3c;
+}
+
+header {
+    background: #101b35;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #38d9f5;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+nav a:hover {
+    color: #38d9f5;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px;
+    background: linear-gradient(120deg, #16284e, #087bba);
+    color: white;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    margin-bottom: 22px;
+}
+
+.search {
+    width: min(90%, 480px);
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+h2 {
+    margin-bottom: 22px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.filters button {
+    padding: 10px 18px;
+    border: 1px solid #ccd5e2;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filters button.active,
+.filters button:hover {
+    background: #101b35;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    gap: 22px;
+}
+
+.product {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #15254412;
+    position: relative;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px #15254420;
+}
+
+.product-image {
+    height: 175px;
+    background: #eaf0f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 78px;
+}
+
+.discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #e63946;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-info h3 {
+    margin-bottom: 8px;
+}
+
+.category {
+    color: #68778d;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #087bba;
+}
+
+.old-price {
+    color: #7b8492;
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+.specs {
+    margin: 13px 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #536176;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    background: #101b35;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.btn:hover {
+    background: #087bba;
+}
+
+.compare-section {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #dce3ec;
+    text-align: left;
+}
+
+th {
+    background: #101b35;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f4f7fb;
+}
+
+.details {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    line-height: 2;
+    margin-top: 25px;
+}
+
+footer {
+    text-align: center;
+    background: #101b35;
+    color: white;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        text-align: center;
+        line-height: 2.2;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .hero {
+        padding: 45px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ElectroHub</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#catalog">Products</a>
+        <a href="#compare">Compare</a>
+        <a href="#details">Specifications</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Discover the Latest Electronics</h1>
+    <p>Laptops, smartphones, accessories and smart devices in one place.</p>
+    <input class="search" id="search"
+        type="text" placeholder="Search electronics...">
+</section>
+
+<main class="container" id="catalog">
+    <h2>Explore Our Products</h2>
+
+    <div class="filters">
+        <button class="active" data-category="all">All Products</button>
+        <button data-category="laptop">Laptops</button>
+        <button data-category="smartphone">Smartphones</button>
+        <button data-category="accessory">Accessories</button>
+        <button data-category="smart">Smart Devices</button>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+
+    <p id="emptyMessage" style="display:none; margin-top:20px">
+        No products found. Try another search.
+    </p>
+</main>
+
+<section class="container" id="compare">
+    <h2>Product Comparison</h2>
+    <div class="compare-section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Specification</th>
+                    <th>Laptop Pro</th>
+                    <th>Smartphone X</th>
+                    <th>Smart Watch</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Price</td><td>₹59,999</td><td>₹29,999</td><td>₹4,999</td></tr>
+                <tr><td>Display</td><td>15.6-inch</td><td>6.7-inch</td><td>1.8-inch</td></tr>
+                <tr><td>Processor</td><td>Intel Core i5</td><td>Octa-core</td><td>Smart chipset</td></tr>
+                <tr><td>Memory</td><td>16 GB RAM</td><td>8 GB RAM</td><td>2 GB RAM</td></tr>
+                <tr><td>Storage</td><td>512 GB SSD</td><td>256 GB</td><td>4 GB</td></tr>
+                <tr><td>Battery</td><td>Up to 8 hours</td><td>5000 mAh</td><td>Up to 7 days</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="container" id="details">
+    <h2>Product Details & Specifications</h2>
+    <div class="details" id="detailBox">
+        <h3>Select a product to view its details</h3>
+        <p>Click the "View Details" button on any product card.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© <span id="year"></span> ElectroHub | Online Electronics Catalog</p>
+    <p>Academic project developed using HTML, CSS and JavaScript.</p>
+</footer>
+
+<script>
+const products = [
+    {
+        id: 1,
+        name: "Laptop Pro",
+        category: "laptop",
+        icon: "💻",
+        price: 59999,
+        oldPrice: 69999,
+        discount: 14,
+        specs: ["Intel Core i5", "16 GB RAM", "512 GB SSD"],
+        display: "15.6-inch Full HD",
+        battery: "Up to 8 hours"
+    },
+    {
+        id: 2,
+        name: "UltraBook Air",
+        category: "laptop",
+        icon: "💻",
+        price: 74999,
+        oldPrice: 84999,
+        discount: 12,
+        specs: ["Intel Core i7", "16 GB RAM", "1 TB SSD"],
+        display: "14-inch Full HD",
+        battery: "Up to 10 hours"
+    },
+    {
+        id: 3,
+        name: "Smartphone X",
+        category: "smartphone",
+        icon: "📱",
+        price: 29999,
+        oldPrice: 34999,
+        discount: 14,
+        specs: ["Octa-core processor", "8 GB RAM", "256 GB storage"],
+        display: "6.7-inch AMOLED",
+        battery: "5000 mAh"
+    },
+    {
+        id: 4,
+        name: "Camera Phone",
+        category: "smartphone",
+        icon: "📱",
+        price: 39999,
+        oldPrice: 44999,
+        discount: 11,
+        specs: ["Octa-core processor", "12 GB RAM", "256 GB storage"],
+        display: "6.8-inch AMOLED",
+        battery: "5000 mAh"
+    },
+    {
+        id: 5,
+        name: "Wireless Earbuds",
+        category: "accessory",
+        icon: "🎧",
+        price: 1999,
+        oldPrice: 2999,
+        discount: 33,
+        specs: ["Bluetooth 5.3", "Touch controls", "Noise reduction"],
+        display: "In-ear audio",
+        battery: "Up to 24 hours with case"
+    },
+    {
+        id: 6,
+        name: "Fast Charger",
+        category: "accessory",
+        icon: "🔌",
+        price: 999,
+        oldPrice: 1499,
+        discount: 33,
+        specs: ["30W output", "USB-C", "Overheat protection"],
+        display: "Compact design",
+        battery: "Not applicable"
+    },
+    {
+        id: 7,
+        name: "Smart Watch",
+        category: "smart",
+        icon: "⌚",
+        price: 4999,
+        oldPrice: 6999,
+        discount: 29,
+        specs: ["Heart-rate tracking", "Activity tracking", "Notifications"],
+        display: "1.8-inch touchscreen",
+        battery: "Up to 7 days"
+    },
+    {
+        id: 8,
+        name: "Smart Speaker",
+        category: "smart",
+        icon: "🔊",
+        price: 3499,
+        oldPrice: 4499,
+        discount: 22,
+        specs: ["Wireless connectivity", "Voice assistant support", "Music playback"],
+        display: "LED indicators",
+        battery: "Model dependent"
+    }
+];
+
+let selectedCategory = "all";
+
+const grid = document.getElementById("productGrid");
+const search = document.getElementById("search");
+
+function money(amount) {
+    return "₹" + amount.toLocaleString("en-IN");
+}
+
+function renderProducts() {
+    const query = search.value.toLowerCase();
+
+    const filtered = products.filter(product => {
+        const matchesCategory =
+            selectedCategory === "all" ||
+            product.category === selectedCategory;
+
+        const matchesSearch =
+            product.name.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query) ||
+            product.specs.join(" ").toLowerCase().includes(query);
+
+        return matchesCategory && matchesSearch;
+    });
+
+    grid.innerHTML = filtered.map(product => `
+        <article class="product">
+            <span class="discount">${product.discount}% OFF</span>
+            <div class="product-image">${product.icon}</div>
+            <div class="product-info">
+                <p class="category">${product.category.toUpperCase()}</p>
+                <h3>${product.name}</h3>
+                <p class="price">${money(product.price)}
+                    <span class="old-price">${money(product.oldPrice)}</span>
+                </p>
+                <div class="specs">
+                    ${product.specs.join("<br>")}
+                </div>
+                <button class="btn"
+                    onclick="showDetails(${product.id})">
+                    View Details
+                </button>
+            </div>
+        </article>
+    `).join("");
+
+    document.getElementById("emptyMessage").style.display =
+        filtered.length ? "none" : "block";
+}
+
+document.querySelectorAll(".filters button").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".filters button")
+            .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        renderProducts();
+    });
+});
+
+search.addEventListener("input", renderProducts);
+
+function showDetails(id) {
+    const product = products.find(item => item.id === id);
+
+    document.getElementById("detailBox").innerHTML = `
+        <h3>${product.icon} ${product.name}</h3>
+        <p><strong>Category:</strong> ${product.category}</p>
+        <p><strong>Price:</strong> ${money(product.price)}</p>
+        <p><strong>Original price:</strong> ${money(product.oldPrice)}</p>
+        <p><strong>Discount:</strong> ${product.discount}%</p>
+        <p><strong>Display:</strong> ${product.display}</p>
+        <p><strong>Battery:</strong> ${product.battery}</p>
+        <p><strong>Specifications:</strong></p>
+        <ul>
+            ${product.specs.map(spec => `<li>${spec}</li>`).join("")}
+        </ul>
+    `;
+
+    document.getElementById("details")
+        .scrollIntoView({ behavior: "smooth" });
+}
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+renderProducts();
+</script>
+
+</body>
+</html>
